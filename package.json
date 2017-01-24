@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/browser-sync start -s src --files src --port 3024 --no-notify"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/Zmoki/try-web-components#readme",
   "devDependencies": {
+    "browser-sync": "^2.18.6",
     "eslint": "^3.14.0",
     "eslint-config-uploadcare": "^1.1.0"
   }
