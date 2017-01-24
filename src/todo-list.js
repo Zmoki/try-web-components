@@ -1,20 +1,3 @@
-const store = (() => {
-  let state
-
-
-  return todos => {
-    if (todos) {
-      state = todos
-      render('todo-list', document.getElementById('todoList'))
-    }
-
-    return state
-  }
-})()
-
-const render = (component, parent = document.body) =>
-  parent.innerHTML = `<${component}></${component}>`
-
 customElements.define('todo-item', class extends HTMLElement {
   constructor() {
     super()
@@ -26,16 +9,6 @@ customElements.define('todo-item', class extends HTMLElement {
         <slot></slot>
       </label>
     `
-    root.querySelector('input').addEventListener('click', () =>
-      store(store().filter((todo, index) => index != this.index)))
-  }
-
-  static get observedAttributes() {
-    return ['index']
-  }
-
-  attributeChangedCallback(name, old, change) {
-    this.index = change
   }
 })
 
@@ -46,7 +19,7 @@ customElements.define('todo-list', class extends HTMLElement {
 
     root.innerHTML = `
       <ul>
-        ${store().map((todo, index) => `
+        ${this.tasks.map((todo, index) => `
           <li>
             <todo-item index=${index}>
               ${todo}
@@ -56,6 +29,8 @@ customElements.define('todo-list', class extends HTMLElement {
       </ul>
     `
   }
-})
 
-store(['Buy milk', 'Call Sarah', 'Pay bills'])
+  get tasks() {
+    return JSON.parse(this.getAttribute('tasks'))
+  }
+})
