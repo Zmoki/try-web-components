@@ -1,0 +1,19 @@
+{
+  "name": "try-web-components",
+  "version": "0.0.0",
+  "description": "Try to create some custom widgets with Web Components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zmoki/try-web-components.git"
+  },
+  "author": "Zarema Khalilova",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Zmoki/try-web-components/issues"
+  },
+  "homepage": "https://github.com/Zmoki/try-web-components#readme"
+}
