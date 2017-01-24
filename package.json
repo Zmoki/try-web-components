@@ -4,6 +4,7 @@
   "description": "Try to create some custom widgets with Web Components",
   "main": "index.js",
   "scripts": {
+    "lint": "./node_modules/.bin/eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/Zmoki/try-web-components/issues"
   },
-  "homepage": "https://github.com/Zmoki/try-web-components#readme"
+  "homepage": "https://github.com/Zmoki/try-web-components#readme",
+  "devDependencies": {
+    "eslint": "^3.14.0",
+    "eslint-config-uploadcare": "^1.1.0"
+  }
 }
