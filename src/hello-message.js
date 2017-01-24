@@ -10,4 +10,12 @@ customElements.define('hello-message', class extends HTMLElement {
 
     root.innerHTML = 'Hello <slot></slot>'
   }
+
+  static get observedAttributes() {
+    return ['name']
+  }
+
+  attributeChangedCallback(name, old, change) {
+    this.textContent = change
+  }
 })
