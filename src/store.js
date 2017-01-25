@@ -38,7 +38,7 @@ document.getElementById('todoList').innerHTML = `<todo-list tasks=${JSON.stringi
 store.subscribe(() => {
   console.log(store.getState().name, ' ', JSON.stringify(store.getState().tasks))
   document.querySelector('#hello hello-message').setAttribute('name', store.getState().name)
-  document.querySelector('#todoList todo-list').setAttribute('tasks', JSON.stringify(store.getState().tasks))
+  document.querySelector('#todoList todo-list').tasks = JSON.stringify(store.getState().tasks)
 })
 
 setTimeout(() => {

@@ -19,18 +19,30 @@ customElements.define('todo-list', class extends HTMLElement {
 
     root.innerHTML = `
       <ul>
-        ${this.tasks.map((todo, index) => `
-          <li>
-            <todo-item index=${index}>
-              ${todo}
-            </todo-item>
-          </li>
-        `).join('')}
+        ${this.renderTasks()}
       </ul>
     `
+
+    this.elList = root.querySelector('ul')
   }
 
   get tasks() {
     return JSON.parse(this.getAttribute('tasks'))
+  }
+
+  set tasks(newTasks) {
+    this.elList.innerHTML =  this.renderTasks(JSON.parse(newTasks))
+  }
+
+  renderTasks(tasks = this.tasks) {
+    return `
+      ${tasks.map((todo, index) => `
+        <li>
+          <todo-item index=${index}>
+            ${todo}
+          </todo-item>
+        </li>
+      `).join('')}
+    `
   }
 })
