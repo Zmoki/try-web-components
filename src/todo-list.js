@@ -9,6 +9,18 @@ customElements.define('todo-item', class extends HTMLElement {
         <slot></slot>
       </label>
     `
+
+    root.querySelector('input').addEventListener('click', () => {
+      this.dispatchEvent(new Event('change'))
+    })
+  }
+
+  get index() {
+    return this.getAttribute('index')
+  }
+
+  get checked() {
+    return this.querySelector('input[type=checkbox]').hasAttribute('checked')
   }
 })
 
@@ -18,12 +30,11 @@ customElements.define('todo-list', class extends HTMLElement {
     const root = this.attachShadow({mode: 'open'})
 
     root.innerHTML = `
-      <ul>
-        ${this.renderTasks()}
-      </ul>
+      <ul></ul>
     `
 
     this.elList = root.querySelector('ul')
+    this.renderTasks()
   }
 
   get tasks() {
@@ -31,11 +42,11 @@ customElements.define('todo-list', class extends HTMLElement {
   }
 
   set tasks(newTasks) {
-    this.elList.innerHTML =  this.renderTasks(JSON.parse(newTasks))
+    this.renderTasks(JSON.parse(newTasks))
   }
 
   renderTasks(tasks = this.tasks) {
-    return `
+    this.elList.innerHTML = `
       ${tasks.map((todo, index) => `
         <li>
           <todo-item index=${index}>
@@ -43,6 +54,9 @@ customElements.define('todo-list', class extends HTMLElement {
           </todo-item>
         </li>
       `).join('')}
-    `
+    `;
+
+    [].slice.call(this.elList.querySelectorAll('todo-item'))
+      .forEach(item => item.addEventListener('change', () => console.log('hi')))
   }
 })
